@@ -2,7 +2,7 @@
 """
 Single-GPU Seq2Seq Training Script for mT5 / German Spelling Correction
 
-Verwendet deine vorbereiteten CSVs in data_prepared:
+Verwendet die vorbereiteten CSVs in data_prepared:
 
   strict:
     - data_prepared/strict/emb_scores_clean_strict_train.csv
@@ -44,7 +44,7 @@ from transformers import (
 # High-level config: HIER ANPASSEN
 # ---------------------------------------------------------------------------
 
-# Welche Datenvariante willst du trainieren?
+# Welche Datenvariante soll für das Training genutzt werden?
 #   'strict'
 #   'strict_oversampled'
 #   'relaxed'

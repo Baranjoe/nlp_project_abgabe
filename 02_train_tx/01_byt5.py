@@ -7,7 +7,7 @@ Unterstützte Varianten (jeweils aus data_prepared/):
     strict, strict_oversampled
     relaxed, relaxed_oversampled
 
-Du steuerst das über:
+Steuerung der Varianten über:
     DATA_VARIANT = "strict" oder "relaxed"
     USE_OVERSAMPLED = False / True
 
@@ -76,7 +76,7 @@ MODELS_ROOT = Path("models")
 MAX_LENGTH = 128
 
 NUM_TRAIN_EPOCHS = 3.0
-PER_DEVICE_TRAIN_BATCH_SIZE = 16   # höher als vorher (A100 packt das)
+PER_DEVICE_TRAIN_BATCH_SIZE = 16   # für A100 geeignet
 PER_DEVICE_EVAL_BATCH_SIZE = 16
 
 LEARNING_RATE = 3e-4
@@ -88,7 +88,7 @@ MAX_STEPS = -1  # -1 = volle Epochen, kein Hard-Cut
 TRAIN_LIMIT = None   # z.B. 50000 für schnellen Test
 VAL_LIMIT = 10000    # Eval-Split bei Bedarf kappen
 
-DATALOADER_NUM_WORKERS = 4  # kannst du auch auf 8 hochdrehen
+DATALOADER_NUM_WORKERS = 4  # 8 auch noch möglich
 
 # ---------------------------------------------------------------------------
 # Helper
@@ -264,7 +264,7 @@ def main() -> None:
     training_args = Seq2SeqTrainingArguments(
         output_dir=str(output_dir),
 
-        # Deine HF-Version nutzt offenbar 'eval_strategy'
+        # Die HF-Version nutzt 'eval_strategy'
         eval_strategy="epoch",
         save_strategy="epoch",
         save_total_limit=SAVE_TOTAL_LIMIT,
@@ -281,7 +281,7 @@ def main() -> None:
         logging_steps=LOGGING_STEPS,
         report_to="none",
 
-        bf16=True,                      # A100 kann das
+        bf16=True,                      # für A100 geeignet
         gradient_checkpointing=False,   # für Speed erstmal aus; bei OOM -> True setzen
         ddp_find_unused_parameters=False,
 
